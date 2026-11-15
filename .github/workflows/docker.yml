@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "bot/**"
+      - "Dockerfile"
+      - "bot.py"
       - ".github/workflows/docker.yml"
   workflow_dispatch:
 
@@ -37,6 +38,7 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: .
+          file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
